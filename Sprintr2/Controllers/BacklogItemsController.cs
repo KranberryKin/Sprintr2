@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Mvc;
 using Sprintr2.Interfaces;
 using Sprintr2.Models;
 
 namespace Sprintr2.Controllers
 {
+  [ApiController]
+  [Route("api/[controller]")]
   public class BacklogItemsController : IController<BacklogItem>
   {
     public BacklogItem Create(BacklogItem data)
