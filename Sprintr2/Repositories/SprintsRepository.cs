@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
 using Sprintr2.Interfaces;
 using Sprintr2.Models;
@@ -46,12 +47,22 @@ namespace Sprintr2.Repositories
       return foundSprint;
     }
 
-    public List<Sprint> Get()
+    public List<Sprint> GetProjectsSprints(int ProjectId)
     {
-      throw new System.NotImplementedException();
+      string sql = "SELECT * FROM sprints WHERE projectId = @ProjectId";
+      return _db.Query<Sprint>(sql, new {ProjectId}).ToList();
     }
 
     public Sprint Get(int id)
+    {
+      string sql = "SELECT s.*, a.* FROM sprints s JOIN accounts a ON a.id = s.creatorId WHERE id = @id LIMIT 1";
+      return _db.Query<Sprint, Profile, Sprint>(sql, (s, a) => {
+        s.Creator = a;
+        return s;
+      }, new{id}).FirstOrDefault();
+    }
+
+    public List<Sprint> Get()
     {
       throw new System.NotImplementedException();
     }
