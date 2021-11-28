@@ -55,7 +55,7 @@ namespace Sprintr2.Repositories
     public List<Project> Get()
     {
       string sql = "SELECT p.*, a.* FROM projects p JOIN accounts a ON a.id = p.creatorId;";
-      return _db.Query<Project, Account, Project>(sql, (p, a) => {
+      return _db.Query<Project, Profile, Project>(sql, (p, a) => {
         p.Creator = a;
         return p;
       }).ToList();
@@ -65,7 +65,7 @@ namespace Sprintr2.Repositories
     public Project Get(int id)
     {
       string sql = "SELECT p.*, a.* FROM projects p JOIN accounts a ON a.id = p.creatorId WHERE p.id = @id LIMIT 1;";
-      return _db.Query<Project, Account, Project>(sql, (p, a) => {
+      return _db.Query<Project, Profile, Project>(sql, (p, a) => {
         p.Creator = a;
         return p;
       }, new {id}).FirstOrDefault();

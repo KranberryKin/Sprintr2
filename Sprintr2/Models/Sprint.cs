@@ -11,5 +11,6 @@ namespace Sprintr2.Models
     public int ProjectId { get; set; }
     public string CreatorId { get; set; }
     public bool IsOpen { get; set; }
+    public object Creator {get; set;}
   }
 }
