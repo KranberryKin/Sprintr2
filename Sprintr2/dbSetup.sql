@@ -72,7 +72,9 @@ CREATE TABLE IF NOT EXISTS tasks(
   backlogitemId int,
   creatorId VARCHAR(255),
   isComplete TINYINT NOT NULL DEFAULT 0,
+  completedOn DATETIME,
   FOREIGN KEY (projectId) REFERENCES projects(id),
   FOREIGN KEY (backlogitemId) REFERENCES backlogitems(id),
   FOREIGN KEY (creatorId) REFERENCES accounts(id)
 ) default charset utf8 COMMENT '';
+DROP TABLE tasks;

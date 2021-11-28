@@ -19,7 +19,7 @@ namespace Sprintr2.Repositories
     public Sprint Create(Sprint data)
     {
       string sql = "INSERT INTO sprints(name, startDate, endDate, projectId, creatorId, isOpen) VALUES(@Name, @StartDate, @EndDate, @ProjectId, @CreatorId, @IsOpen); SELECT LAST_INSERT_ID();"; 
-      var id = _db.ExecuteScalar<int>(sql, new {data});
+      var id = _db.ExecuteScalar<int>(sql, data);
       data.Id = id;
       var foundSprint = Get(id);
       return foundSprint;
