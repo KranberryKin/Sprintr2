@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Data;
+using Dapper;
 using Sprintr2.Interfaces;
 using Sprintr2.Models;
 
@@ -6,19 +8,42 @@ namespace Sprintr2.Repositories
 {
   public class SprintsRepository : IRepository<Sprint>
   {
+    private readonly IDbConnection _db;
+
+    public SprintsRepository(IDbConnection db)
+    {
+      _db = db;
+    }
+
     public Sprint Create(Sprint data)
     {
-      throw new System.NotImplementedException();
+      string sql = "INSERT INTO sprints(name, startDate, endDate, projectId, creatorId, isOpen) VALUES(@Name, @StartDate, @EndDate, @ProjectId, @CreatorId, @IsOpen); SELECT LAST_INSERT_ID();"; 
+      var id = _db.ExecuteScalar<int>(sql, new {data});
+      data.Id = id;
+      var foundSprint = Get(id);
+      return foundSprint;
     }
 
     public void Delete(int id)
     {
-      throw new System.NotImplementedException();
+      string sql = "DELETE FROM sprints WHERE id = @id LIMIT 1;";
+      var rowsAffected = _db.Execute(sql, new {id});
+      if (rowsAffected == 0)
+      {
+        throw new System.Exception("Deleting Sprint Failed");
+      }
     }
 
     public Sprint Edit(int id)
     {
-      throw new System.NotImplementedException();
+      string sql = "UPDATE sprints SET name = @Name, startDate = @StartDate, endDate = @EndDate, projectId = @ProjectId, creatorId = @CreatorId, isOpen = @IsOpen WHERE id = @id LIMIT 1;";
+      var rowsAffected = _db.Execute(sql, new {id});
+      if (rowsAffected == 0)
+      {
+        throw new System.Exception("Update Sprint Failed");
+      }
+      var foundSprint = Get(id);
+      return foundSprint;
     }
 
     public List<Sprint> Get()
