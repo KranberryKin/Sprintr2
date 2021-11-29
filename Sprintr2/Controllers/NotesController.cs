@@ -8,7 +8,7 @@ namespace Sprintr2.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class NotesController : IController<Note>
+  public class NotesController : ControllerBase, IController<Note>
   {
     private readonly NotesService _ns;
 
@@ -19,27 +19,67 @@ namespace Sprintr2.Controllers
 
     public void Delete(int id)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+            Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          BadRequest(e.Message);
+      }
     }
 
     ActionResult<Note> IController<Note>.Create(Note data)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     ActionResult<Note> IController<Note>.Edit(int id)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     ActionResult<List<Note>> IController<Note>.Get()
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     ActionResult<Note> IController<Note>.Get(int id)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
   }
 }

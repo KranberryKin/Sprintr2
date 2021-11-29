@@ -8,7 +8,7 @@ namespace Sprintr2.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class BacklogItemsController : IController<BacklogItem>
+  public class BacklogItemsController : ControllerBase, IController<BacklogItem>
   {
     private readonly BacklogItemsService _bis;
 
@@ -19,27 +19,67 @@ namespace Sprintr2.Controllers
 
     public ActionResult<BacklogItem> Create(BacklogItem data)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     public void Delete(int id)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+            Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+           BadRequest(e.Message);
+      }
     }
 
     public ActionResult<BacklogItem> Edit(int id)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     public ActionResult<List<BacklogItem>> Get()
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     public ActionResult<BacklogItem> Get(int id)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
   }
 }

@@ -8,7 +8,7 @@ namespace Sprintr2.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class TasksController : IController<Task>
+  public class TasksController : ControllerBase, IController<Task>
   {
     private readonly TasksService _ts;
 
@@ -19,27 +19,67 @@ namespace Sprintr2.Controllers
 
     public ActionResult<Task> Create(Task data)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     public void Delete(int id)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+            Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+           BadRequest(e.Message);
+      }
     }
 
     public ActionResult<Task> Edit(int id)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     public ActionResult<List<Task>> Get()
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     public ActionResult<Task> Get(int id)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
   }
 }

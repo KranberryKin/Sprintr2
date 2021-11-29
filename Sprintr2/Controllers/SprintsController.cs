@@ -8,7 +8,7 @@ namespace Sprintr2.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class SprintsController : IController<Sprint>
+  public class SprintsController : ControllerBase, IController<Sprint>
   {
     private readonly SprintsService _ss;
 
@@ -19,27 +19,67 @@ namespace Sprintr2.Controllers
 
     public ActionResult<Sprint> Create(Sprint data)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     public void Delete(int id)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+            Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+           BadRequest(e.Message);
+      }
     }
 
     public ActionResult<Sprint> Edit(int id)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     public ActionResult<List<Sprint>> Get()
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     public ActionResult<Sprint> Get(int id)
     {
-      throw new System.NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
   }
 }

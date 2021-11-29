@@ -3,13 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Sprintr2.Interfaces;
 using Sprintr2.Models;
 using Sprintr2.Services;
-using System;
 
 namespace Sprintr2.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class ProjectsController : IController<Project>
+  public class ProjectsController : ControllerBase, IController<Project>
   {
     private readonly ProjectsService _ps;
 
@@ -19,28 +18,68 @@ namespace Sprintr2.Controllers
     }
 
     public ActionResult<Project> Create(Project data)
-    {
-      throw new NotImplementedException();
+    {      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     public void Delete(int id)
     {
-      throw new NotImplementedException();
+      try
+      {
+           Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          BadRequest(e.Message);
+      }
     }
 
     public ActionResult<Project> Edit(int id)
     {
-      throw new NotImplementedException();
+            try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
+    [HttpGet]
     public ActionResult<List<Project>> Get()
     {
-      throw new NotImplementedException();
+      try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
 
     public ActionResult<Project> Get(int id)
     {
-      throw new NotImplementedException();
+            try
+      {
+           return Ok();
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
     }
   }
 }
