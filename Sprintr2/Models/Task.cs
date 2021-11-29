@@ -12,5 +12,6 @@ namespace Sprintr2.Models
     public string CreatorId { get; set; }
     public bool IsComplete { get; set; }
     public DateTime CompletedOn { get; set; }
+    public object Creator {get; set;}
   }
 }

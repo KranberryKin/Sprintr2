@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Data;
-using System.Threading.Tasks;
+using System.Linq;
 using Dapper;
 using Sprintr2.Interfaces;
+using Sprintr2.Models;
 
 namespace Sprintr2.Repositories
 {
@@ -25,20 +26,44 @@ namespace Sprintr2.Repositories
 
     public void Delete(int id)
     {
-      throw new System.NotImplementedException();
+      string sql = "DELETE FROM tasks WHERE id = @id LIMIT 1;";
+      var rowsAffected = _db.Execute(sql, new{id});
+      if (rowsAffected == 0)
+      {
+        throw new System.Exception("Delete Task Failed");
+      }
     }
 
     public Task Edit(int id)
     {
-      throw new System.NotImplementedException();
+      string sql = "UPDATE tasks SET name = @Name, weight = @Weight, isComplete = @IsComplete, completedOn = @CompletedOn WHERE id = @id LIMIT 1;";
+      var rowsAffected = _db.Execute(sql, new {id});
+      if (rowsAffected == 0)
+      {
+        throw new System.Exception("Update Task Failed");
+      }
+      var foundTask = Get(id);
+      return foundTask;
     }
 
-    public List<Task> Get()
+    public List<Task> GetBacklogTasks(int id)
     {
-      throw new System.NotImplementedException();
+      string sql = "SELECT t.*, a.* FROM tasks t JOIN accounts a ON a.id = t.creatorId WHERE t.backlogitemId = @id;";
+      return _db.Query<Task, Profile, Task>(sql, (t, a) => 
+      {
+        t.Creator = a;
+        return t;
+      }, new{id}).ToList();
+
     }
 
     public Task Get(int id)
+    {
+      string sql = "SELECT * FROM tasks WHERE id = @id LIMIT 1;";
+      return _db.Query<Task>(sql, new {id}).FirstOrDefault();
+    }
+
+    public List<Task> Get()
     {
       throw new System.NotImplementedException();
     }
