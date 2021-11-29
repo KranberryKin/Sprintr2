@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Sprintr2.Interfaces;
 using Sprintr2.Models;
+using Sprintr2.Services;
 
 namespace Sprintr2.Controllers
 {
@@ -9,6 +10,13 @@ namespace Sprintr2.Controllers
   [Route("api/[controller]")]
   public class ProjectsController : IController<Project>
   {
+    private readonly ProjectsService _ps;
+
+    public ProjectsController(ProjectsService ps)
+    {
+      _ps = ps;
+    }
+
     public Project Create(Project data)
     {
       throw new System.NotImplementedException();

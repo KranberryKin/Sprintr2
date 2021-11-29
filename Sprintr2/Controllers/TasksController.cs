@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Sprintr2.Interfaces;
+using Sprintr2.Services;
 
 namespace Sprintr2.Controllers
 {
@@ -9,6 +10,13 @@ namespace Sprintr2.Controllers
   [Route("api/[controller]")]
   public class TasksController : IController<Task>
   {
+    private readonly TasksService _ts;
+
+    public TasksController(TasksService ts)
+    {
+      _ts = ts;
+    }
+
     public Task Create(Task data)
     {
       throw new System.NotImplementedException();
