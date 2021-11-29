@@ -17,10 +17,12 @@ namespace Sprintr2.Controllers
       _ps = ps;
     }
 
-    public ActionResult<Project> Create(Project data)
+    [HttpPost]
+    public ActionResult<Project> Create([FromBody] Project data)
     {      try
       {
-           return Ok();
+        Project project = _ps.Create(data);
+           return Ok(project);
       }
       catch (System.Exception e)
       {
