@@ -17,7 +17,7 @@ namespace Sprintr2.Controllers
       _ts = ts;
     }
 
-    public Task Create(Task data)
+    public ActionResult<Task> Create(Task data)
     {
       throw new System.NotImplementedException();
     }
@@ -27,17 +27,17 @@ namespace Sprintr2.Controllers
       throw new System.NotImplementedException();
     }
 
-    public Task Edit(int id)
+    public ActionResult<Task> Edit(int id)
     {
       throw new System.NotImplementedException();
     }
 
-    public List<Task> Get()
+    public ActionResult<List<Task>> Get()
     {
       throw new System.NotImplementedException();
     }
 
-    public Task Get(int id)
+    public ActionResult<Task> Get(int id)
     {
       throw new System.NotImplementedException();
     }

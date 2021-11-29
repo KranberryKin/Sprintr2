@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sprintr2.Interfaces;
 using Sprintr2.Models;
 using Sprintr2.Services;
+using System;
 
 namespace Sprintr2.Controllers
 {
@@ -17,29 +18,29 @@ namespace Sprintr2.Controllers
       _ps = ps;
     }
 
-    public Project Create(Project data)
+    public ActionResult<Project> Create(Project data)
     {
-      throw new System.NotImplementedException();
+      throw new NotImplementedException();
     }
 
     public void Delete(int id)
     {
-      throw new System.NotImplementedException();
+      throw new NotImplementedException();
     }
 
-    public Project Edit(int id)
+    public ActionResult<Project> Edit(int id)
     {
-      throw new System.NotImplementedException();
+      throw new NotImplementedException();
     }
 
-    public List<Project> Get()
+    public ActionResult<List<Project>> Get()
     {
-      throw new System.NotImplementedException();
+      throw new NotImplementedException();
     }
 
-    public Project Get(int id)
+    public ActionResult<Project> Get(int id)
     {
-      throw new System.NotImplementedException();
+      throw new NotImplementedException();
     }
   }
 }

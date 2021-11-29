@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Sprintr2.Interfaces
 {
@@ -8,22 +9,22 @@ namespace Sprintr2.Interfaces
     /// Gets all items from desired table.
     /// </summary>
     /// <returns></returns>
-    List<T> Get();
+    ActionResult<List<T>> Get();
     /// <summary>
     /// Gets single items by it's Id.
     /// </summary>
     /// <returns></returns>
-    T Get(int id);
+    ActionResult<T> Get(int id);
     /// <summary>
     /// Adds the item to the database, then returns it with it's Id.
     /// </summary>
     /// <returns></returns>
-    T Create(T data);
+    ActionResult<T> Create(T data);
     /// <summary>
     /// Takes items updated data, and updates the database.
     /// </summary>
     /// <returns></returns>
-    T Edit(int id);
+    ActionResult<T> Edit(int id);
     /// <summary>
     /// Removes Items from database by it's Id.
     /// </summary>

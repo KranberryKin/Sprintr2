@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Sprintr2.Interfaces;
 using Sprintr2.Models;
@@ -16,7 +17,7 @@ namespace Sprintr2.Controllers
       _bis = bis;
     }
 
-    public BacklogItem Create(BacklogItem data)
+    public ActionResult<BacklogItem> Create(BacklogItem data)
     {
       throw new System.NotImplementedException();
     }
@@ -26,17 +27,17 @@ namespace Sprintr2.Controllers
       throw new System.NotImplementedException();
     }
 
-    public BacklogItem Edit(int id)
+    public ActionResult<BacklogItem> Edit(int id)
     {
       throw new System.NotImplementedException();
     }
 
-    public System.Collections.Generic.List<BacklogItem> Get()
+    public ActionResult<List<BacklogItem>> Get()
     {
       throw new System.NotImplementedException();
     }
 
-    public BacklogItem Get(int id)
+    public ActionResult<BacklogItem> Get(int id)
     {
       throw new System.NotImplementedException();
     }

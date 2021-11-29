@@ -17,7 +17,7 @@ namespace Sprintr2.Controllers
       _ss = ss;
     }
 
-    public Sprint Create(Sprint data)
+    public ActionResult<Sprint> Create(Sprint data)
     {
       throw new System.NotImplementedException();
     }
@@ -27,17 +27,17 @@ namespace Sprintr2.Controllers
       throw new System.NotImplementedException();
     }
 
-    public Sprint Edit(int id)
+    public ActionResult<Sprint> Edit(int id)
     {
       throw new System.NotImplementedException();
     }
 
-    public List<Sprint> Get()
+    public ActionResult<List<Sprint>> Get()
     {
       throw new System.NotImplementedException();
     }
 
-    public Sprint Get(int id)
+    public ActionResult<Sprint> Get(int id)
     {
       throw new System.NotImplementedException();
     }

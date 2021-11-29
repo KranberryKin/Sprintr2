@@ -17,27 +17,27 @@ namespace Sprintr2.Controllers
       _ns = ns;
     }
 
-    public Note Create(Note data)
-    {
-      throw new System.NotImplementedException();
-    }
-
     public void Delete(int id)
     {
       throw new System.NotImplementedException();
     }
 
-    public Note Edit(int id)
+    ActionResult<Note> IController<Note>.Create(Note data)
     {
       throw new System.NotImplementedException();
     }
 
-    public List<Note> Get()
+    ActionResult<Note> IController<Note>.Edit(int id)
     {
       throw new System.NotImplementedException();
     }
 
-    public Note Get(int id)
+    ActionResult<List<Note>> IController<Note>.Get()
+    {
+      throw new System.NotImplementedException();
+    }
+
+    ActionResult<Note> IController<Note>.Get(int id)
     {
       throw new System.NotImplementedException();
     }
