@@ -2,7 +2,7 @@ using System;
 
 namespace Sprintr2.Models
 {
-  public class Task
+  public class Assessment
   {
     public int Id { get; set; }
     public string Name { get; set; }

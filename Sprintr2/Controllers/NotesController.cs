@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Mvc;
 using Sprintr2.Interfaces;
 using Sprintr2.Models;
@@ -30,7 +32,22 @@ namespace Sprintr2.Controllers
       }
     }
 
-    ActionResult<Note> IController<Note>.Create(Note data)
+    public async Task<ActionResult<Note>> Create(Note data)
+    {
+      try
+      {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        data.CreatorId = userInfo.Id;
+           return Ok(_ns.Create(data));
+      }
+      catch (System.Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
+    }
+
+    public ActionResult<Note> Edit(int id)
     {
       try
       {
@@ -43,7 +60,7 @@ namespace Sprintr2.Controllers
       }
     }
 
-    ActionResult<Note> IController<Note>.Edit(int id)
+    public ActionResult<List<Note>> Get()
     {
       try
       {
@@ -56,20 +73,7 @@ namespace Sprintr2.Controllers
       }
     }
 
-    ActionResult<List<Note>> IController<Note>.Get()
-    {
-      try
-      {
-           return Ok();
-      }
-      catch (System.Exception e)
-      {
-          
-          return BadRequest(e.Message);
-      }
-    }
-
-    ActionResult<Note> IController<Note>.Get(int id)
+    public ActionResult<Note> Get(int id)
     {
       try
       {

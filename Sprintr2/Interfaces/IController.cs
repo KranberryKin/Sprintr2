@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Sprintr2.Interfaces
@@ -19,7 +20,7 @@ namespace Sprintr2.Interfaces
     /// Adds the item to the database, then returns it with it's Id.
     /// </summary>
     /// <returns></returns>
-    ActionResult<T> Create(T data);
+    Task<ActionResult<T>> Create(T data);
     /// <summary>
     /// Takes items updated data, and updates the database.
     /// </summary>

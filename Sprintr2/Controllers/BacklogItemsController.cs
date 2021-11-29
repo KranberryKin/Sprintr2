@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Mvc;
 using Sprintr2.Interfaces;
 using Sprintr2.Models;
@@ -17,11 +19,14 @@ namespace Sprintr2.Controllers
       _bis = bis;
     }
 
-    public ActionResult<BacklogItem> Create(BacklogItem data)
+    public async Task<ActionResult<BacklogItem>> Create(BacklogItem data)
     {
       try
       {
-           return Ok();
+         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+         data.CreatorId = userInfo.Id;
+          var createdBacklog = _bis.Create(data);
+           return Ok(createdBacklog);
       }
       catch (System.Exception e)
       {

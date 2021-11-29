@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Mvc;
 using Sprintr2.Interfaces;
 using Sprintr2.Models;
@@ -17,11 +19,13 @@ namespace Sprintr2.Controllers
       _ss = ss;
     }
 
-    public ActionResult<Sprint> Create(Sprint data)
+    public async Task<ActionResult<Sprint>> Create(Sprint data)
     {
       try
       {
-           return Ok();
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        data.CreatorId = userInfo.Id;
+           return Ok(_ss.Create(data));
       }
       catch (System.Exception e)
       {

@@ -1,27 +1,31 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Mvc;
 using Sprintr2.Interfaces;
+using Sprintr2.Models;
 using Sprintr2.Services;
 
 namespace Sprintr2.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class TasksController : ControllerBase, IController<Task>
+  public class AssessmentsController : ControllerBase, IController<Assessment>
   {
-    private readonly TasksService _ts;
+    private readonly AssessmentsService _ams;
 
-    public TasksController(TasksService ts)
+    public AssessmentsController(AssessmentsService ams)
     {
-      _ts = ts;
+      _ams = ams;
     }
 
-    public ActionResult<Task> Create(Task data)
+    public async Task<ActionResult<Assessment>> Create(Assessment data)
     {
       try
       {
-           return Ok();
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        data.CreatorId = userInfo.Id;
+           return Ok(_ams.Create(data));
       }
       catch (System.Exception e)
       {
@@ -43,7 +47,7 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<Task> Edit(int id)
+    public ActionResult<Assessment> Edit(int id)
     {
       try
       {
@@ -56,7 +60,7 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<List<Task>> Get()
+    public ActionResult<List<Assessment>> Get()
     {
       try
       {
@@ -69,7 +73,7 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<Task> Get(int id)
+    public ActionResult<Assessment> Get(int id)
     {
       try
       {

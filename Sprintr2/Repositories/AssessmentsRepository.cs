@@ -7,16 +7,16 @@ using Sprintr2.Models;
 
 namespace Sprintr2.Repositories
 {
-  public class TasksRepository : IRepository<Task>
+  public class AssessmentsRepository : IRepository<Assessment>
   {
     private readonly IDbConnection _db;
 
-    public TasksRepository(IDbConnection db)
+    public AssessmentsRepository(IDbConnection db)
     {
       _db = db;
     }
 
-    public Task Create(Task taskData)
+    public Assessment Create(Assessment taskData)
     {
       string sql = "INSERT INTO tasks(name, weight, projectId, backlogitemId, creatorId, isComplete) VALUES(@Name, @Weight, @ProjectId, @BacklogItemId, @CreatorId, @IsComplete); SELECT LAST_INSERT_ID();";
       var id = _db.ExecuteScalar<int>(sql, taskData);
@@ -34,7 +34,7 @@ namespace Sprintr2.Repositories
       }
     }
 
-    public Task Edit(int id)
+    public Assessment Edit(int id)
     {
       string sql = "UPDATE tasks SET name = @Name, weight = @Weight, isComplete = @IsComplete, completedOn = @CompletedOn WHERE id = @id LIMIT 1;";
       var rowsAffected = _db.Execute(sql, new {id});
@@ -46,10 +46,10 @@ namespace Sprintr2.Repositories
       return foundTask;
     }
 
-    public List<Task> GetBacklogTasks(int id)
+    public List<Assessment> GetBacklogTasks(int id)
     {
       string sql = "SELECT t.*, a.* FROM tasks t JOIN accounts a ON a.id = t.creatorId WHERE t.backlogitemId = @id;";
-      return _db.Query<Task, Profile, Task>(sql, (t, a) => 
+      return _db.Query<Assessment, Profile, Assessment>(sql, (t, a) => 
       {
         t.Creator = a;
         return t;
@@ -57,13 +57,13 @@ namespace Sprintr2.Repositories
 
     }
 
-    public Task Get(int id)
+    public Assessment Get(int id)
     {
       string sql = "SELECT * FROM tasks WHERE id = @id LIMIT 1;";
-      return _db.Query<Task>(sql, new {id}).FirstOrDefault();
+      return _db.Query<Assessment>(sql, new {id}).FirstOrDefault();
     }
 
-    public List<Task> Get()
+    public List<Assessment> Get()
     {
       throw new System.NotImplementedException();
     }

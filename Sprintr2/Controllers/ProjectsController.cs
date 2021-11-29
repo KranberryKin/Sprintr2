@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Mvc;
 using Sprintr2.Interfaces;
 using Sprintr2.Models;
@@ -18,9 +20,11 @@ namespace Sprintr2.Controllers
     }
 
     [HttpPost]
-    public ActionResult<Project> Create([FromBody] Project data)
+    public async Task<ActionResult<Project>> Create([FromBody] Project data)
     {      try
       {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        data.CreatorId = userInfo.Id;
         Project project = _ps.Create(data);
            return Ok(project);
       }

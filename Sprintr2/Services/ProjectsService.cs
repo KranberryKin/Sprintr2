@@ -16,7 +16,7 @@ namespace Sprintr2.Services
 
     public Project Create(Project data)
     {
-      throw new System.NotImplementedException();
+      return _pr.Create(data);
     }
 
     public void Delete(int id)
