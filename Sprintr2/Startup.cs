@@ -45,8 +45,8 @@ namespace Sprintr2
             services.AddScoped<BacklogItemsRepository>();
             services.AddScoped<BacklogItemsService>();
 
-            services.AddScoped<TasksRepository>();
-            services.AddScoped<TasksService>();
+            services.AddScoped<AssessmentsRepository>();
+            services.AddScoped<AssessmentsService>();
 
             services.AddScoped<NotesRepository>();
             services.AddScoped<NotesService>();

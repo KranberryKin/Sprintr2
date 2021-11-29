@@ -21,7 +21,7 @@ namespace Sprintr2.Services
 
     public void Delete(int id)
     {
-      throw new System.NotImplementedException();
+      _pr.Delete(id);
     }
 
     public Project Edit(int id)

@@ -19,16 +19,16 @@ namespace Sprintr2.Controllers
       _ns = ns;
     }
 
-    public void Delete(int id)
+    public ActionResult Delete(int id)
     {
       try
       {
-            Ok();
+            return Ok();
       }
       catch (System.Exception e)
       {
           
-          BadRequest(e.Message);
+          return BadRequest(e.Message);
       }
     }
 

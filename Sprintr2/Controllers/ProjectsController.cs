@@ -35,16 +35,18 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public void Delete(int id)
+    [HttpDelete("{projectId}")]
+    public ActionResult Delete(int projectId)
     {
       try
       {
-           Ok();
+          _ps.Delete(projectId);
+           return Ok("Project deleted");
       }
       catch (System.Exception e)
       {
           
-          BadRequest(e.Message);
+          return BadRequest(e.Message);
       }
     }
 
