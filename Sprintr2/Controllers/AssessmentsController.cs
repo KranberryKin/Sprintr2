@@ -18,7 +18,7 @@ namespace Sprintr2.Controllers
     {
       _ams = ams;
     }
-
+[HttpPost]
     public async Task<ActionResult<Assessment>> Create(Assessment data)
     {
       try
@@ -34,7 +34,8 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public async Task<ActionResult> Delete(int id)
+    [HttpDelete("{assessmentId}")]
+    public async Task<ActionResult> Delete(int assessmentId)
     {
       try
       {
@@ -48,10 +49,12 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<Assessment> Edit(int id)
+    [HttpPut("{assessmentId}")]
+    public async Task<ActionResult<Assessment>> Edit(int assessmentId, [FromBody] Assessment assessmentData)
     {
       try
       {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
            return Ok();
       }
       catch (System.Exception e)
@@ -61,6 +64,7 @@ namespace Sprintr2.Controllers
       }
     }
 
+    [HttpGet]
     public ActionResult<List<Assessment>> Get()
     {
       try
@@ -74,7 +78,8 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<Assessment> Get(int id)
+    [HttpGet("{assessmentId}")]
+    public ActionResult<Assessment> Get(int assessmentId)
     {
       try
       {

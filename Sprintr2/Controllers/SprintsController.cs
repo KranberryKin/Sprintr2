@@ -19,7 +19,8 @@ namespace Sprintr2.Controllers
       _ss = ss;
     }
 
-    public async Task<ActionResult<Sprint>> Create(Sprint data)
+    [HttpPost]
+    public async Task<ActionResult<Sprint>> Create([FromBody] Sprint data)
     {
       try
       {
@@ -34,7 +35,8 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public async Task<ActionResult> Delete(int id)
+    [HttpDelete("{sprintId}")]
+    public async Task<ActionResult> Delete(int sprintId)
     {
       try
       {
@@ -48,10 +50,12 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<Sprint> Edit(int id)
+    [HttpPut("{sprintId}")]
+    public async Task<ActionResult<Sprint>> Edit(int sprintId, [FromBody] Sprint sprintData)
     {
       try
       {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
            return Ok();
       }
       catch (System.Exception e)
@@ -61,6 +65,7 @@ namespace Sprintr2.Controllers
       }
     }
 
+    [HttpGet]
     public ActionResult<List<Sprint>> Get()
     {
       try
@@ -74,7 +79,8 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<Sprint> Get(int id)
+    [HttpGet("{sprintId}")]
+    public ActionResult<Sprint> Get(int sprintId)
     {
       try
       {

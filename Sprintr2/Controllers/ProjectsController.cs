@@ -36,11 +36,12 @@ namespace Sprintr2.Controllers
     }
 
     [HttpDelete("{projectId}")]
-    public ActionResult Delete(int projectId)
+    public async Task<ActionResult> Delete(int projectId)
     {
       try
       {
-          _ps.Delete(projectId);
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+          _ps.Delete(projectId, userInfo.Id);
            return Ok("Project deleted");
       }
       catch (System.Exception e)
@@ -50,11 +51,13 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<Project> Edit(int id)
+    [HttpPut("{projectId}")]
+    public async Task<ActionResult<Project>> Edit(int projectId, [FromBody] Project projectData)
     {
             try
       {
-           return Ok();
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+           return Ok(_ps.Edit(projectId, projectData, userInfo.Id));
       }
       catch (System.Exception e)
       {
@@ -68,7 +71,7 @@ namespace Sprintr2.Controllers
     {
       try
       {
-           return Ok();
+           return Ok(_ps.Get());
       }
       catch (System.Exception e)
       {
@@ -77,11 +80,12 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<Project> Get(int id)
+    [HttpGet("{projectId}")]
+    public ActionResult<Project> Get(int projectId)
     {
             try
       {
-           return Ok();
+           return Ok(_ps.Get(projectId));
       }
       catch (System.Exception e)
       {

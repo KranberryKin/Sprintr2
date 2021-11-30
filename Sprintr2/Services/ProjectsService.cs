@@ -21,22 +21,44 @@ namespace Sprintr2.Services
 
     public void Delete(int id, string userId)
     {
+      Project foundProject = Get(id);
+      if (foundProject.CreatorId != userId)
+      {
+        throw new System.Exception("Deleting Project Un-Authorized!");
+      }
       _pr.Delete(id);
     }
 
-    public Project Edit(int id)
+    public Project Edit(int projectId, Project editedData, string userId)
+    {
+      Project foundProject = Get(projectId);
+      if (foundProject.CreatorId != userId)
+      {
+        throw new System.Exception("Not your Project to Edit!");
+      }
+      foundProject.Description = editedData.Description ?? foundProject.Description;
+      foundProject.Name = editedData.Name ?? foundProject.Name;
+      return _pr.Edit(foundProject);
+    }
+
+    public Project Edit(int id, string userId)
     {
       throw new System.NotImplementedException();
     }
 
     public List<Project> Get()
     {
-      throw new System.NotImplementedException();
+      return _pr.Get();
     }
 
     public Project Get(int id)
     {
-      throw new System.NotImplementedException();
+      Project foundProject = _pr.Get(id);
+      if (foundProject == null)
+      {
+        throw new System.Exception("Finding Project Failed");
+      }
+      return foundProject;
     }
   }
 }

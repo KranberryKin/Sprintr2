@@ -25,7 +25,7 @@ namespace Sprintr2.Interfaces
     /// Takes items updated data, and updates the database.
     /// </summary>
     /// <returns></returns>
-    ActionResult<T> Edit(int id);
+    Task<ActionResult<T>> Edit(int id, T data);
     /// <summary>
     /// Removes Items from database by it's Id.
     /// </summary>

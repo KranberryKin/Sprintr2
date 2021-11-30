@@ -19,6 +19,7 @@ namespace Sprintr2.Controllers
       _ns = ns;
     }
 
+    [HttpDelete]
     public async Task<ActionResult> Delete(int id)
     {
       try
@@ -33,13 +34,14 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public async Task<ActionResult<Note>> Create(Note data)
+    [HttpPost]
+    public async Task<ActionResult<Note>> Create([FromBody] Note noteData)
     {
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        data.CreatorId = userInfo.Id;
-           return Ok(_ns.Create(data));
+        noteData.CreatorId = userInfo.Id;
+           return Ok(_ns.Create(noteData));
       }
       catch (System.Exception e)
       {
@@ -48,10 +50,12 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<Note> Edit(int id)
+    [HttpPut("{noteId}")]
+    public async Task<ActionResult<Note>> Edit(int noteId, [FromBody] Note noteData)
     {
       try
       {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
            return Ok();
       }
       catch (System.Exception e)
@@ -61,6 +65,7 @@ namespace Sprintr2.Controllers
       }
     }
 
+    [HttpGet]
     public ActionResult<List<Note>> Get()
     {
       try
@@ -74,7 +79,8 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<Note> Get(int id)
+    [HttpGet("{noteId}")]
+    public ActionResult<Note> Get(int noteId)
     {
       try
       {

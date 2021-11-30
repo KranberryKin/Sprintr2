@@ -12,6 +12,7 @@ namespace Sprintr2.Controllers
   [Route("api/[controller]")]
   public class BacklogItemsController : ControllerBase, IController<BacklogItem>
   {
+    // Connection so Backlog Service
     private readonly BacklogItemsService _bis;
 
     public BacklogItemsController(BacklogItemsService bis)
@@ -19,7 +20,8 @@ namespace Sprintr2.Controllers
       _bis = bis;
     }
 
-    public async Task<ActionResult<BacklogItem>> Create(BacklogItem data)
+    [HttpPost]
+    public async Task<ActionResult<BacklogItem>> Create([FromBody] BacklogItem data)
     {
       try
       {
@@ -35,7 +37,8 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public async Task<ActionResult> Delete(int id)
+    [HttpDelete("{backlogitemId}")]
+    public async Task<ActionResult> Delete(int backlogitemId)
     {
       try
       {
@@ -49,10 +52,12 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<BacklogItem> Edit(int id)
+    [HttpPut("{backlogitemId}")]
+    public async Task<ActionResult<BacklogItem>> Edit(int backlogitemId, [FromBody] BacklogItem backlogItemData)
     {
       try
       {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
            return Ok();
       }
       catch (System.Exception e)
@@ -62,6 +67,7 @@ namespace Sprintr2.Controllers
       }
     }
 
+    [HttpGet]
     public ActionResult<List<BacklogItem>> Get()
     {
       try
@@ -75,7 +81,8 @@ namespace Sprintr2.Controllers
       }
     }
 
-    public ActionResult<BacklogItem> Get(int id)
+    [HttpGet("{backlogitemId}")]
+    public ActionResult<BacklogItem> Get(int backlogitemId)
     {
       try
       {
