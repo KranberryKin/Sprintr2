@@ -19,7 +19,7 @@ namespace Sprintr2.Services
       return _pr.Create(data);
     }
 
-    public void Delete(int id)
+    public void Delete(int id, string userId)
     {
       _pr.Delete(id);
     }

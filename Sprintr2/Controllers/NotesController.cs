@@ -19,10 +19,11 @@ namespace Sprintr2.Controllers
       _ns = ns;
     }
 
-    public ActionResult Delete(int id)
+    public async Task<ActionResult> Delete(int id)
     {
       try
       {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
             return Ok();
       }
       catch (System.Exception e)

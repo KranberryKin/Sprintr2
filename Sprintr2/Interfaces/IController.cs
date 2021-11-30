@@ -29,6 +29,6 @@ namespace Sprintr2.Interfaces
     /// <summary>
     /// Removes Items from database by it's Id.
     /// </summary>
-    ActionResult Delete(int id);
+    Task<ActionResult> Delete(int id);
   }
 }

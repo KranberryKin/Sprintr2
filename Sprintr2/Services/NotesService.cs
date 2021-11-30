@@ -19,7 +19,7 @@ namespace Sprintr2.Services
       throw new System.NotImplementedException();
     }
 
-    public void Delete(int id)
+    public void Delete(int id, string userId)
     {
       throw new System.NotImplementedException();
     }
