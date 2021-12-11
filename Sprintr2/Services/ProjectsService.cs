@@ -41,10 +41,6 @@ namespace Sprintr2.Services
       return _pr.Edit(foundProject);
     }
 
-    public Project Edit(int id, string userId)
-    {
-      throw new System.NotImplementedException();
-    }
 
     public List<Project> Get()
     {

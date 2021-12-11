@@ -35,15 +35,15 @@ namespace Sprintr2.Repositories
       }
     }
 
-    public BacklogItem Edit(int id)
+    public BacklogItem Edit(BacklogItem backlogItem)
     {
       string sql = "UPDATE backlogitems SET name = @Name, description = @Description, status = @Status, sprintId = @SprintId WHERE id = @id LIMIT 1;";
-      var rowsAffected = _db.Execute(sql, new {id});
+      var rowsAffected = _db.Execute(sql, new {backlogItem});
       if (rowsAffected == 0)
       {
         throw new System.Exception("Deleting BacklogItem Failed");
       }
-      var foundBacklog = Get(id);
+      var foundBacklog = Get(backlogItem.Id);
       return foundBacklog;
     }
 

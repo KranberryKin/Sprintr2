@@ -24,7 +24,7 @@ namespace Sprintr2.Services
       throw new System.NotImplementedException();
     }
 
-    public Assessment Edit(int id, string userId)
+    public Assessment Edit(int id, Assessment editedData, string userId)
     {
       throw new System.NotImplementedException();
     }

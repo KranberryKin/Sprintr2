@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS projects(
   creatorId VARCHAR(255) NOT NULL,
   FOREIGN KEY (creatorId) REFERENCES accounts(id)
 ) default charset utf8 COMMENT '';
-
+DROP TABLE projects;
 
 CREATE TABLE IF NOT EXISTS sprints(
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',

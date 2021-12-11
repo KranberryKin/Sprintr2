@@ -16,17 +16,31 @@ namespace Sprintr2.Services
 
     public Sprint Create(Sprint data)
     {
-      throw new System.NotImplementedException();
+      return _sr.Create(data);
     }
 
     public void Delete(int id,string userId)
     {
-      throw new System.NotImplementedException();
+      var foundSprint = Get(id);
+      if (foundSprint.CreatorId != userId)
+      {
+        throw new System.Exception("Cannot Delete Sprint");
+      }
+      _sr.Delete(id);
     }
 
-    public Sprint Edit(int id, string userId)
+    public Sprint Edit(int id, Sprint editedData, string userId)
     {
-      throw new System.NotImplementedException();
+      var foundSprint = Get(id);
+      if (foundSprint.CreatorId != userId)
+      {
+        throw new System.Exception("Cannot Edit Sprint");
+      }
+      foundSprint.Name = editedData.Name ?? foundSprint.Name;
+      foundSprint.StartDate = editedData.StartDate ?? foundSprint.StartDate;
+      foundSprint.EndDate = editedData.EndDate ?? foundSprint.EndDate;
+      foundSprint.IsOpen = editedData.IsOpen ?? foundSprint.IsOpen;
+      return _sr.Edit(foundSprint);
     }
 
     public List<Sprint> Get()

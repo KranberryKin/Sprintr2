@@ -34,15 +34,15 @@ namespace Sprintr2.Repositories
       }
     }
 
-    public Assessment Edit(int id)
+    public Assessment Edit(Assessment assessmentData)
     {
       string sql = "UPDATE tasks SET name = @Name, weight = @Weight, isComplete = @IsComplete, completedOn = @CompletedOn WHERE id = @id LIMIT 1;";
-      var rowsAffected = _db.Execute(sql, new {id});
+      var rowsAffected = _db.Execute(sql, new {assessmentData});
       if (rowsAffected == 0)
       {
         throw new System.Exception("Update Task Failed");
       }
-      var foundTask = Get(id);
+      var foundTask = Get(assessmentData.Id);
       return foundTask;
     }
 

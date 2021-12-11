@@ -23,7 +23,7 @@ namespace Sprintr2.Interfaces
     /// Takes items updated data, and updates the database.
     /// </summary>
     /// <returns></returns>
-    T Edit(int id);
+    T Edit(T data);
     /// <summary>
     /// Removes Items from database by it's Id.
     /// </summary>

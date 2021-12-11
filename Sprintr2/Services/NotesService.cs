@@ -24,7 +24,7 @@ namespace Sprintr2.Services
       throw new System.NotImplementedException();
     }
 
-    public Note Edit(int id, string userId)
+    public Note Edit(int id, Note editedData, string userId)
     {
       throw new System.NotImplementedException();
     }

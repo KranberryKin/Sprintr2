@@ -47,11 +47,6 @@ namespace Sprintr2.Repositories
       return foundProject;
     }
 
-    public Project Edit(int id)
-    {
-      throw new System.NotImplementedException();
-    }
-
     public List<Project> Get()
     {
       string sql = "SELECT p.*, a.* FROM projects p JOIN accounts a ON a.id = p.creatorId;";

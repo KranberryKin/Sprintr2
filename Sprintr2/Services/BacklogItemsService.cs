@@ -24,7 +24,7 @@ namespace Sprintr2.Services
       throw new System.NotImplementedException();
     }
 
-    public BacklogItem Edit(int id, string userId)
+    public BacklogItem Edit(int id, BacklogItem editedData, string userId)
     {
       throw new System.NotImplementedException();
     }

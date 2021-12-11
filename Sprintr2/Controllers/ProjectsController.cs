@@ -25,8 +25,7 @@ namespace Sprintr2.Controllers
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
         data.CreatorId = userInfo.Id;
-        Project project = _ps.Create(data);
-           return Ok(project);
+           return Ok(_ps.Create(data));
       }
       catch (System.Exception e)
       {

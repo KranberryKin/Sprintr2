@@ -20,7 +20,6 @@ namespace Sprintr2.Repositories
     {
       string sql = "INSERT INTO sprints(name, startDate, endDate, projectId, creatorId, isOpen) VALUES(@Name, @StartDate, @EndDate, @ProjectId, @CreatorId, @IsOpen); SELECT LAST_INSERT_ID();"; 
       var id = _db.ExecuteScalar<int>(sql, data);
-      data.Id = id;
       var foundSprint = Get(id);
       return foundSprint;
     }
@@ -35,15 +34,15 @@ namespace Sprintr2.Repositories
       }
     }
 
-    public Sprint Edit(int id)
+    public Sprint Edit(Sprint sprintData)
     {
-      string sql = "UPDATE sprints SET name = @Name, startDate = @StartDate, endDate = @EndDate, projectId = @ProjectId, creatorId = @CreatorId, isOpen = @IsOpen WHERE id = @id LIMIT 1;";
-      var rowsAffected = _db.Execute(sql, new {id});
+      string sql = "UPDATE sprints SET name = @Name, startDate = @StartDate, endDate = @EndDate, creatorId = @CreatorId, isOpen = @IsOpen WHERE id = @id LIMIT 1;";
+      var rowsAffected = _db.Execute(sql, new {sprintData});
       if (rowsAffected == 0)
       {
         throw new System.Exception("Update Sprint Failed");
       }
-      var foundSprint = Get(id);
+      var foundSprint = Get(sprintData.Id);
       return foundSprint;
     }
 
