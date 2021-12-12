@@ -67,11 +67,11 @@ namespace Sprintr2.Controllers
     }
 
     [HttpGet]
-    public ActionResult<List<Sprint>> Get()
+    public ActionResult<List<Sprint>> GetProjectsSprints([FromRoute]int projectId)
     {
       try
       {
-           return Ok();
+           return Ok(_ss.GetProjectsSprints(projectId));
       }
       catch (System.Exception e)
       {

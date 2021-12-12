@@ -52,5 +52,10 @@ namespace Sprintr2.Services
     {
       throw new System.NotImplementedException();
     }
+
+    public List<Sprint> GetProjectsSprints(int projectId)
+    {
+      return _sr.GetProjectsSprints(projectId);
+    }
   }
 }
